@@ -3,6 +3,7 @@ variables:
 
 stages:
   - test
+  - package
 
 mix:
   image: elixir:slim
@@ -32,7 +33,6 @@ pages:
     expire_in: 30 days
   cache: {}
   dependencies:
-    - css_lint
     - mix
   only:
     - master
