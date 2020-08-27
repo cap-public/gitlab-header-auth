@@ -14,6 +14,10 @@ mix:
     paths:
       - deps/
       - _build/
+  artifacts:
+    paths:
+      - cover/
+    expire_in: 1 day
   before_script:
     - mix local.hex --force
     - mix local.rebar --force
