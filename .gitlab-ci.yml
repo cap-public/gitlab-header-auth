@@ -1,0 +1,59 @@
+variables:
+  MIX_ENV: "test"
+
+stages:
+  - test
+
+mix:
+  image: elixir:slim
+  interruptible: true
+  stage: test
+  cache:
+    key: gitlab_auth_mix
+    paths:
+      - deps/
+      - _build/
+  before_script:
+    - mix local.hex --force
+    - mix local.rebar --force
+    - mix deps.get --only test
+  script:
+    - mix coveralls.html
+    - mix docs
+    - 'mix inch | grep "Grade values: " | grep -Eo "([0-9]{1,3},\s){3}[0-9]{1,3}" > doc/coverage'
+
+pages:
+  image: ruby:alpine
+  interruptible: true
+  stage: package
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  cache: {}
+  dependencies:
+    - css_lint
+    - mix
+  only:
+    - master
+  before_script:
+    - apk add curl
+    - mkdir -p gems
+    - gem install --install-dir ./gems inch-badge
+  script:
+    - mkdir -p doc
+    - mkdir -p cover
+    - 'echo "23, 2, 3, 52" > doc/coverage'
+    - GEM_HOME=./gems ./gems/bin/inch-badge --flat doc.svg $(cat doc/coverage | tr ',' "\n")
+    - rm doc/coverage
+    - 'curl -X POST "https://upload.imagekit.io/api/v1/files/upload"
+       -u "$IMAGEKIT_API_KEY"
+       -F "file=@doc.svg;type=image/svg+xml"
+       -F "fileName=doc-coverage.svg"
+       -F "useUniqueFileName=false"
+       -F "folder=gitlab-auth"'
+    - 'curl "https://api.imagekit.io/v1/files/purge"
+       -u "$IMAGEKIT_API_KEY"
+       -d "url=https://ik.imagekit.io/captech/gitlab-auth/doc-coverage.svg"'
+    - mv doc/ public/
+    - mv cover/ public/coverage/
