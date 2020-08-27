@@ -40,4 +40,5 @@ pages:
     - master
   script:
     - mkdir -p cover
+    - mkdir -p public
     - mv cover/ public/coverage/
