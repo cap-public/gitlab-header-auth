@@ -4,6 +4,12 @@ defmodule GitlabAuthTest do
   import Plug.Conn, only: [put_req_header: 3]
   doctest GitLabAuth
 
+  test "init" do
+    result = GitLabAuth.init([token: "some_token"])
+
+    assert result == [token: "some_token"]
+  end
+
   test "correct header succeeds" do
     conn =
       conn("POST", "/")
