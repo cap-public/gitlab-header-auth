@@ -8,7 +8,12 @@ defmodule GitLabAuth do
 
   def init(opts), do: opts
 
-  def call(conn, [token: expected_token]) when is_binary(expected_token) do
+  def call(conn, _) do
+    token = Application.get_env(:gitlab_auth, :token)
+    check_token(conn, token)
+  end
+
+  defp check_token(conn, expected_token) when is_binary(expected_token) do
     case get_req_header(conn, "x-gitlab-token") do
       [provided_token] ->
         if provided_token == expected_token do
@@ -21,9 +26,9 @@ defmodule GitLabAuth do
     end
   end
 
-  def call(conn, opts) do
-    Logger.error "Received incorrect configuration: #{inspect opts}"
-    forbid(conn, "authorisation configuration is invalid - expected %{token: some_token}", 401)
+  defp check_token(conn, token) do
+    Logger.error "Received incorrect configuration: #{inspect token}"
+    forbid(conn, "authorisation configuration is invalid - have you set `config :gitlab_auth, :token, [TOKEN]`?}", 401)
   end
 
   # Deny access and send back the supplied reason.
