@@ -4,6 +4,7 @@ defmodule GitLabAuth do
   """
 
   import Plug.Conn
+  require Logger
 
   def init(opts), do: opts
 
@@ -20,7 +21,8 @@ defmodule GitLabAuth do
     end
   end
 
-  def call(conn, _) do
+  def call(conn, opts) do
+    Logger.error "Received incorrect configuration: #{opts}"
     forbid(conn, "authorisation configuration is invalid - expected %{token: some_token}", 401)
   end
 
