@@ -22,7 +22,7 @@ defmodule GitLabAuth do
   end
 
   def call(conn, opts) do
-    Logger.error "Received incorrect configuration: #{opts}"
+    Logger.error "Received incorrect configuration: #{inspect opts}"
     forbid(conn, "authorisation configuration is invalid - expected %{token: some_token}", 401)
   end
 
