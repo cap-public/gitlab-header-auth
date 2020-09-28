@@ -1,4 +1,4 @@
-defmodule GitLabAuth do
+defmodule GitLabHeaderAuth do
   @moduledoc """
   Plug that checks that the conn (normally caused by webhooks from GitLab) has the correct `X-Gitlab-Token` header.
   """
@@ -9,7 +9,7 @@ defmodule GitLabAuth do
   def init(opts), do: opts
 
   def call(conn, _) do
-    token = Application.get_env(:gitlab_auth, :token)
+    token = Application.get_env(:gitlab_header_auth, :token)
     check_token(conn, token)
   end
 
@@ -28,7 +28,12 @@ defmodule GitLabAuth do
 
   defp check_token(conn, token) do
     Logger.error "Received incorrect configuration: #{inspect token}"
-    forbid(conn, "authorisation configuration is invalid - have you set `config :gitlab_auth, :token, [TOKEN]`?}", 401)
+
+    forbid(
+      conn,
+      "authorisation configuration is invalid - have you set `config :gitlab_header_auth, :token, [TOKEN]`?}",
+      401
+    )
   end
 
   # Deny access and send back the supplied reason.

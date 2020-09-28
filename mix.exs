@@ -1,10 +1,12 @@
-defmodule GitlabAuth.MixProject do
+defmodule GitlabHeaderAuth.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :gitlab_auth,
-      version: "2.0.0",
+      app: :gitlab_header_auth,
+      licences: "MIT",
+      links: %{"GitLab" => "https://gitlab.com/cap-public/packages/gitlab-header-auth/"},
+      version: "1.0.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
