@@ -29,6 +29,7 @@ defmodule GitlabHeaderAuth.MixProject do
     [
       {:plug_cowboy, "~> 2.0"},
       {:excoveralls, "~> 0.13.1", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
     ]
   end
 
