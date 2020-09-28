@@ -6,7 +6,7 @@ defmodule GitlabHeaderAuth.MixProject do
       app: :gitlab_header_auth,
       source_url: "https://gitlab.com/cap-public/packages/gitlab-header-auth/",
       homepage_url: "https://gitlab.com/cap-public/packages/gitlab-header-auth/",
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       description: description(),
