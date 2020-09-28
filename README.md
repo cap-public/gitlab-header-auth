@@ -13,7 +13,7 @@ The package can be installed by adding `gitlab_header_auth` to your list of depe
 ```elixir
 def deps do
   [
-    {:gitlab_header_auth, git: "https://gitlab.com/cap-public/packages/gitlab-header-auth", tag: "1.0.0"}
+    {:gitlab_header_auth, "~> 1.0"}
   ]
 end
 ```
