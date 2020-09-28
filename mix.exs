@@ -13,7 +13,11 @@ defmodule GitlabHeaderAuth.MixProject do
       package: package(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.html": :test]
+      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.html": :test],
+      docs: [
+        main: "readme", # The main page in the docs
+        extras: ["README.md"]
+      ]
     ]
   end
 
