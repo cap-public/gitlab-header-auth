@@ -1,13 +1,18 @@
 defmodule GitLabHeaderAuth do
   @moduledoc """
-  Plug that checks that the conn (normally caused by webhooks from GitLab) has the correct `X-Gitlab-Token` header.
+  Plug that checks that the conn (normally caused by webhooks from GitLab) has the correct `X-GitLab-Token` header.
   """
 
   import Plug.Conn
   require Logger
 
+  @doc false
   def init(opts), do: opts
 
+  @doc """
+  Gets the token from the `:gitlab_header_auth` application, under `:token`, then checks the token passed in via the
+  `X-GitLab-Token` header in the `conn` matches it.
+  """
   def call(conn, _) do
     token = Application.get_env(:gitlab_header_auth, :token)
     check_token(conn, token)
