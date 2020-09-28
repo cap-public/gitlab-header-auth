@@ -17,3 +17,24 @@ def deps do
   ]
 end
 ```
+
+## Usage
+
+If using Phoenix, add `plug GitLabHeaderAuth` to the pipeline you want to authenticate - for example:
+
+```elixir
+pipeline :api do
+  plug :accepts, ["json"]
+  plug GitLabHeaderAuth
+end
+```
+
+If you haven't set the config correctly, the plug will halt the `conn` and tell you (by returning a JSON error). It will also halt and return if the auth fails.
+
+## Example configuration
+
+In `config/dev.exs` add the following:
+
+```elixir
+config :gitlab_header_auth, :token, "DEVTOKEN"
+```
