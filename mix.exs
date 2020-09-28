@@ -31,7 +31,7 @@ defmodule GitlabHeaderAuth.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:plug_cowboy, "~> 2.0"},
+      {:plug, "~> 1.10.4"},
       {:excoveralls, "~> 0.13.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
     ]
