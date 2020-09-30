@@ -26,13 +26,14 @@ defmodule GitLabHeaderAuth do
         else
           forbid(conn, "invalid authorisation", 403)
         end
+
       _ ->
-      forbid(conn, "missing authorisation", 401)
+        forbid(conn, "missing authorisation", 401)
     end
   end
 
   defp check_token(conn, token) do
-    Logger.error "Received incorrect configuration: #{inspect token}"
+    Logger.error("Received incorrect configuration: #{inspect(token)}")
 
     forbid(
       conn,
@@ -49,4 +50,3 @@ defmodule GitLabHeaderAuth do
     |> halt()
   end
 end
-
