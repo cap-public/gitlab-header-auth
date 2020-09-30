@@ -10,7 +10,3 @@ include:
 stages:
   - test
   - package
-
-pages:
-  only:
-    - add-inch
