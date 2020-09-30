@@ -24,6 +24,8 @@ mix:
     - mix deps.get --only test
   script:
     - mix coveralls.html
+    - MIX_ENV=docs mix deps.get
+    - MIX_ENV=docs mix inch.report
 
 pages:
   image: ruby:alpine
