@@ -33,7 +33,7 @@ defmodule GitlabHeaderAuth.MixProject do
     [
       {:plug, "~> 1.10.4"},
       {:excoveralls, "~> 0.13.1", only: :test},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]},
     ]
   end
