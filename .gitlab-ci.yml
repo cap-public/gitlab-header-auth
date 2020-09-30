@@ -1,46 +1,16 @@
 variables:
   MIX_ENV: "test"
 
+include:
+  - project: 'capuk/utilities/ci-templates'
+    file: '/elixir/mix_no_db.yml'
+  - project: 'capuk/utilities/ci-templates'
+    file: '/elixir/pages.yml'
+
 stages:
   - test
   - package
 
-mix:
-  image: registry.gitlab.com/capuk/docker/phoenix:latest
-  interruptible: true
-  stage: test
-  cache:
-    key: gitlab_auth_mix
-    paths:
-      - deps/
-      - _build/
-  artifacts:
-    paths:
-      - cover/
-    expire_in: 1 day
-  before_script:
-    - mix local.hex --force
-    - mix local.rebar --force
-    - mix deps.get --only test
-  script:
-    - mix coveralls.html
-    - MIX_ENV=docs mix deps.get
-    - MIX_ENV=docs mix inch.report
-
 pages:
-  image: ruby:alpine
-  interruptible: true
-  stage: package
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
-  cache: {}
-  dependencies:
-    - mix
   only:
-    - master
-  script:
-    - mkdir -p cover
-    - mkdir -p public
-    - mv cover/ public/coverage/
+    - add-inch
