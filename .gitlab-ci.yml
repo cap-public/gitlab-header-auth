@@ -6,7 +6,7 @@ stages:
   - package
 
 mix:
-  image: elixir:slim
+  image: registry.gitlab.com/capuk/docker/phoenix:latest
   interruptible: true
   stage: test
   cache:
