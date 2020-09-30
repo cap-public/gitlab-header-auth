@@ -1,7 +1,7 @@
 defmodule GitlabHeaderAuth.MixProject do
   use Mix.Project
 
-  @version "1.1.0"
+  @version "1.1.1"
   @source_url "https://gitlab.com/cap-public/packages/gitlab-header-auth/"
 
   def project do
