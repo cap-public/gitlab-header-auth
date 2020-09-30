@@ -5,7 +5,7 @@ defmodule GitlabHeaderAuthTest do
   doctest GitLabHeaderAuth
 
   test "init" do
-    result = GitLabHeaderAuth.init([token: "some_token"])
+    result = GitLabHeaderAuth.init(token: "some_token")
 
     assert result == [token: "some_token"]
   end
@@ -51,7 +51,9 @@ defmodule GitlabHeaderAuthTest do
     conn = GitLabHeaderAuth.call(conn("POST", "/"), [])
 
     # The plug wasn't configured correctly
-    expected = "authorisation configuration is invalid - have you set `config :gitlab_header_auth, :token, [TOKEN]`?\}"
+    expected =
+      "authorisation configuration is invalid - have you set `config :gitlab_header_auth, :token, [TOKEN]`?\}"
+
     assert_error_response(conn, 401, expected)
   end
 
