@@ -2,6 +2,7 @@
 
 [![build status](https://gitlab.com/cap-public/packages/gitlab-header-auth/badges/master/pipeline.svg)](https://gitlab.com/cap-public/packages/gitlab-header-auth/-/commits/master)
 [![coverage report](https://gitlab.com/cap-public/packages/gitlab-header-auth/badges/master/coverage.svg)](https://cap-public.gitlab.io/packages/gitlab-header-auth/coverage/excoveralls.html)
+[![docs](https://ik.imagekit.io/captech/gitlab-header-auth/doc-coverage.svg)](https://hexdocs.pm/gitlab_header_auth/)
 
 A [plug](https://github.com/elixir-plug/plug) to check that a request has a `X-GitLab-Auth` header, and the token in that header matches an expected value.
 
