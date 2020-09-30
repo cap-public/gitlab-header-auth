@@ -2,9 +2,9 @@ variables:
   MIX_ENV: "test"
 
 include:
-  - project: 'capuk/utilities/ci-templates'
+  - project: 'cap-public/ci/gitlab-ci-templates'
     file: '/elixir/mix_no_db.yml'
-  - project: 'capuk/utilities/ci-templates'
+  - project: 'cap-public/ci/gitlab-ci-templates'
     file: '/elixir/pages.yml'
 
 stages:
