@@ -8,7 +8,6 @@ stages:
 mix:
   image: registry.gitlab.com/capuk/docker/phoenix:latest
   interruptible: true
-  interruptible: true
   stage: test
   cache:
     key: gitlab_auth_mix
