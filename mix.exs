@@ -1,7 +1,7 @@
 defmodule GitlabHeaderAuth.MixProject do
   use Mix.Project
 
-  @version "1.1.1"
+  @version "1.2.0"
   @source_url "https://gitlab.com/cap-public/packages/gitlab-header-auth/"
 
   def project do
@@ -29,7 +29,7 @@ defmodule GitlabHeaderAuth.MixProject do
 
   defp deps do
     [
-      {:plug, "~> 1.10.4"},
+      {:plug, "~> 1.11.0"},
       {:excoveralls, "~> 0.13.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]}
